@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container">
+    <div class="row">
+        {% for car in cars %}
+            <div class="card" style="width: 17rem; margin: 0.3em;">
+                <div class="card-body">
+                    <p class="card-text">Vin: {{ car.vin}}</p>
+                    <p class="card-text">Manufacturer: {{ car.manufacturer}}</p>
+                    <p class="card-text">Model: {{ car.model}}</p>
+                    <p class="card-text">Color: {{ car.color}}</p>
+                    <p class="card-text">Production year: {{ car.prod_year}}</p>
+                    <a href="{{ url('get_car', car_id=car.id) }}" class="btn btn-primary">Details</a>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+    </div>
+{% endblock %}

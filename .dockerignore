@@ -1,0 +1,12 @@
+venv
+.git
+.idea
+*.iml
+.coverage
+.cache
+.pytest_cache
+.mypy_cache
+**/*.pyc
+**/__pycache__
+db_data
+target

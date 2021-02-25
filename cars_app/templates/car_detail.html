@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container">
+        <div class="row">
+        <div class="col-sm-4">
+        <h2>Car details</h2>
+        {% if errors %}
+            {% for field, e in errors.items() %}
+            <div class="alert alert-danger" role="alert">
+                {% if e is string %}
+                    Error: {{ field }} - {{ e }}
+                {% else %}
+                    Error: {{ field }} - {{ ', '.join(e) }}
+                {% endif %}
+            </div>
+            {% endfor %}
+        {% endif %}
+        <form action="{{ url('update_car', car_id=car.id) }}" method="post" accept-charset="utf-8" enctype="application/x-www-form-urlencoded">
+            <div class="form-group">
+                <label for="vin">Vin code</label>
+                <input type="text" class="form-control" id="vin" name="vin" placeholder="Enter vin code" value="{{ car.vin }}">
+            </div>
+            <div class="form-group">
+                <label for="manufacturer">Manufacturer</label>
+                <input type="text" class="form-control" id="manufacturer" name="manufacturer" placeholder="Enter manufacturer" value="{{ car.manufacturer }}">
+            </div>
+            <div class="form-group">
+                <label for="model">Model</label>
+                <input type="text" class="form-control" id="model" name="model" placeholder="Enter model" value="{{ car.model }}">
+            </div>
+            <div class="form-group">
+                <label for="color">Color</label>
+                <input type="text" class="form-control" id="color" name="color" placeholder="Red" value="{{ car.color }}">
+            </div>
+            <div class="form-group">
+                <label for="prod_year">Production year</label>
+                <input type="text" class="form-control" id="prod_year" name="prod_year" placeholder="{{ car.prod_year }}" value="{{ car.prod_year }}">
+            </div>
+            <input type="submit" class="btn btn-primary" value="Update"/>
+        </form>
+        <br>
+        <form action="{{ url('delete_car', car_id=car.id) }}" method="post" accept-charset="utf-8" enctype="application/x-www-form-urlencoded">
+            <input type="submit" class="btn btn-danger" value="Delete"/>
+        </form>
+        </div>
+    </div>
+    <br>
+</div>
+{% endblock %}
